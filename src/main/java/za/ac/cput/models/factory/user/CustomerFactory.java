@@ -1,3 +1,10 @@
+/**
+ *  Name: Tye Walker
+ *  Student Number: 218338562
+ *  Group: 23
+ *
+ *  Customer Factory
+ */
 package za.ac.cput.models.factory.user;
 
 
