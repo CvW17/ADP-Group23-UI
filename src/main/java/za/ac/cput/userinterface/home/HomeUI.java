@@ -1,5 +1,7 @@
 package za.ac.cput.userinterface.home;
 
+import za.ac.cput.userinterface.customer.CustomerHomeUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -124,6 +126,8 @@ public class HomeUI implements ActionListener {
 
         if(e.getActionCommand().equals("1. Customers")) {
             System.out.println("1. Customers");
+            CustomerHomeUI chui = new CustomerHomeUI();
+            chui.customersUI();
         }
 
         if(e.getActionCommand().equals("2. Appointments")) {
