@@ -1,5 +1,6 @@
 package za.ac.cput.userinterface.home;
 
+import za.ac.cput.userinterface.bills.BillUI;
 import za.ac.cput.userinterface.customer.CustomerHomeUI;
 
 import javax.swing.*;
@@ -134,8 +135,11 @@ public class HomeUI implements ActionListener {
             System.out.println("2. Appointments");
         }
 
-        if(e.getActionCommand().equals("3. Bills")) {
+        if(e.getActionCommand().equals("3. Bills"))
+        {
             System.out.println("3. Bills");
+            BillUI billUI = new BillUI();
+            billUI.setBillUI();
         }
 
         if(e.getActionCommand().equals("4. Employees")) {
