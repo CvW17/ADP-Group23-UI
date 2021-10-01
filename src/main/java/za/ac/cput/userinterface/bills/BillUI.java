@@ -33,6 +33,8 @@ public class BillUI extends JFrame implements ActionListener
 
     public void setBillUI()
     {
+        this.setTitle("Bill");
+
         btnSave.addActionListener(this);
         btnAdd.addActionListener(this);
         btnHome.addActionListener(this);
@@ -42,7 +44,7 @@ public class BillUI extends JFrame implements ActionListener
 
         pnlSouth.setLayout(new GridLayout(1,2));
         pnlSouth.add(btnHome);
-        pnlSouth.add(btnSave);
+        pnlSouth.add(btnAdd);
 
         this.add(pnlNorth, BorderLayout.NORTH);
         this.add(pnlCenter, BorderLayout.CENTER);
@@ -67,7 +69,7 @@ public class BillUI extends JFrame implements ActionListener
                 break;
             }
 
-            case("Save"):
+            case("Add new Bill"):
             {
                 new AddBillUI().setGUI();
                 this.dispose();
