@@ -33,6 +33,10 @@ public class BillUI extends JFrame implements ActionListener
 
     public void setBillUI()
     {
+        btnSave.addActionListener(this);
+        btnAdd.addActionListener(this);
+        btnHome.addActionListener(this);
+
         pnlCenter.setLayout(new FlowLayout());
         pnlCenter.add(tblBills);
 
@@ -52,11 +56,11 @@ public class BillUI extends JFrame implements ActionListener
     }
 
     @Override
-    public void actionPerformed(ActionEvent buttons)
+    public void actionPerformed(ActionEvent e)
     {
-        switch(buttons.getActionCommand())
+        switch(e.getActionCommand())
         {
-            case ("Home"):
+            case("Home"):
             {
                 new HomeUI().setUI();
                 this.dispose();
@@ -65,7 +69,9 @@ public class BillUI extends JFrame implements ActionListener
 
             case("Save"):
             {
-
+                new AddBillUI().setGUI();
+                this.dispose();
+                break;
             }
         }
     }
