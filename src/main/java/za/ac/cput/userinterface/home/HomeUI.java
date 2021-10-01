@@ -140,6 +140,7 @@ public class HomeUI implements ActionListener {
             System.out.println("3. Bills");
             BillUI billUI = new BillUI();
             billUI.setBillUI();
+            frame.dispose();
         }
 
         if(e.getActionCommand().equals("4. Employees")) {
