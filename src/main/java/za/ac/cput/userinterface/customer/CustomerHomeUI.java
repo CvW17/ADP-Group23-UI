@@ -4,8 +4,10 @@ import za.ac.cput.models.entity.user.Customer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class CustomerHomeUI {
+public class CustomerHomeUI implements ActionListener {
 
     private JFrame frame;
     private JPanel panelNorth, panelCenter, panelSouth, panelEast, panelWest;
@@ -45,6 +47,11 @@ public class CustomerHomeUI {
         btnFindCustomer.setFont(new Font("Arial", Font.PLAIN, 20));
         btnUpdateCustomer.setFont(new Font("Arial", Font.PLAIN, 20));
         btnDeleteCustomer.setFont(new Font("Arial", Font.PLAIN, 20));
+
+        btnAddCustomer.addActionListener(this);
+        btnFindCustomer.addActionListener(this);
+        btnUpdateCustomer.addActionListener(this);
+        btnDeleteCustomer.addActionListener(this);
 
         // Panel North:
         headerLabel = new JLabel("Header");
@@ -98,4 +105,17 @@ public class CustomerHomeUI {
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Add Customer")) {
+            AddCustomerPanel acp = new AddCustomerPanel();
+            System.out.println("Add Customer");
+            JPanel addCustomer = acp.AddCustomerJP();
+            frame.remove(panelSouth);
+            addCustomer.setPreferredSize(new Dimension(600,400));
+            frame.add(addCustomer, BorderLayout.SOUTH);
+            frame.invalidate();
+            frame.validate();
+        }
+    }
 }

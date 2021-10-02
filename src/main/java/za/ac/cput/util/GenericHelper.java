@@ -14,4 +14,9 @@ public class GenericHelper {
         return email.matches(regex);
     }
 
+    public static boolean validContactNumber(String contactNumber) {
+        String regex = "[0-9]+";
+        return contactNumber.matches(regex);
+    }
+
 }
