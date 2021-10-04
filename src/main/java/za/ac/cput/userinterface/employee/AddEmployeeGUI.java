@@ -5,11 +5,8 @@
 package za.ac.cput.userinterface.employee;
 
 import za.ac.cput.dao.user.EmployeeDAO;
-import za.ac.cput.models.entity.user.Customer;
 import za.ac.cput.models.entity.user.Employee;
-import za.ac.cput.models.factory.user.CustomerFactory;
 import za.ac.cput.models.factory.user.EmployeeFactory;
-import za.ac.cput.userinterface.customer.CustomerHomeUI;
 import za.ac.cput.util.GenericHelper;
 
 import javax.swing.*;
@@ -22,8 +19,7 @@ public class AddEmployeeGUI extends JFrame implements ActionListener {
     private JButton btnAdd, btnReset, btnCancel;
     private JLabel lblHeading, lblName, lblSurname, lblPhone, lblRate;
     private JLabel error1 , error2, error3, error4;
-    private JLabel blank1, blank2, blank3, blank4,blank5, blank6, blank7, blank8, blank9, blank10;
-    private JTextField txtID, txtName, txtSurname, txtPhone, txtRate;
+    private JTextField  txtName, txtSurname, txtPhone, txtRate;
 
 
 
@@ -50,16 +46,7 @@ public class AddEmployeeGUI extends JFrame implements ActionListener {
         error2 = new JLabel(" ");
         error3 = new JLabel(" ");
         error4 = new JLabel(" ");
-        blank1 = new JLabel(" ");
-        blank2 = new JLabel(" ");
-        blank3 = new JLabel(" ");
-        blank4 = new JLabel(" ");
-        blank5 = new JLabel(" ");
-        blank6 = new JLabel(" ");
-        blank7 = new JLabel(" ");
-        blank8 = new JLabel(" ");
-        blank9 = new JLabel(" ");
-        blank10 = new JLabel(" ");
+
 
         //Textfields
         txtName = new JTextField("");
