@@ -181,6 +181,9 @@ public class DeleteCustomerGUI implements ActionListener {
             CustomerDAO cDAO = new CustomerDAO();
             cDAO.deleteCustomer(customer);
         }
+        if (e.getActionCommand().equals("Exit")) {
+            deleteFrame.dispose();
+        }
 
     }
 }
