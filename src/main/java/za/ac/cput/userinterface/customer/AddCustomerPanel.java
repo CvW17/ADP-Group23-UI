@@ -12,10 +12,25 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// TODO : Refactor Name to ..GUI
+
 public class AddCustomerPanel implements ActionListener {
 
+    private JFrame frame;
+
+    private JPanel panelNorth, panelCenter, panelSouth, panelEast, panelWest;
+    private JPanel bottomPanelNorth, bottomPanelSouth, bottomPanelEast, bottomPanelWest, bottomPanelCenter;
+    private JLabel headerLabel;
+    private JButton btnAddCustomer, btnFindCustomer, btnGetAllCustomers, btnBack;
+    private JButton btnUpdate, btnDelete, btnExit;
+    private JLabel centerFiller1, centerFiller2, centerFiller3, centerFiller4, centerFiller5, centerFiller6;
+    private JLabel westFiller1;
+    private JLabel eastFiller1;
+    private JLabel southFiller1, southFiller2, southFiller3;
+
+
     private JPanel addCustomerPanel;
-    private JPanel panelNorth, panelSouth, panelWest, panelCenter, panelEast;
+
 
     private JLabel jlabelTitle, labelFirstName, labelLastName, labelContactNumber, labelEmail;
     private JLabel errorFirstName, errorLastName, errorContactNumber, errorEmail;
@@ -25,9 +40,90 @@ public class AddCustomerPanel implements ActionListener {
     private JLabel filler28, filler29, filler30, filler31, filler32;
 
 
-    private JButton btnSave, btnClear, btnExit;
+    private JButton btnSave, btnClear;
 
     private JTextField textFirstName, textLastName, textContactNumber, textEmail;
+
+    public AddCustomerPanel() {
+        frame = new JFrame("Customers");
+        JPanel mainPanelNorth = new JPanel();
+        JPanel mainPanelCenter = new JPanel();
+        JPanel mainPanelEast = new JPanel();
+        JPanel mainPanelWest = new JPanel();
+        JPanel mainPanelSouth = new JPanel();
+
+        // Temp JLabels
+        centerFiller1 = new JLabel(" ");
+        centerFiller2 = new JLabel(" ");
+        centerFiller3 = new JLabel(" ");
+        centerFiller4 = new JLabel(" ");
+        centerFiller5 = new JLabel(" ");
+        centerFiller6 = new JLabel(" ");
+        westFiller1 = new JLabel("                                                                                       ");
+        eastFiller1 = new JLabel("                                                                                       ");
+        southFiller1 = new JLabel(" ");
+        southFiller2 = new JLabel(" ");
+        southFiller3 = new JLabel(" ");
+
+        // Buttons
+        btnAddCustomer = new JButton("Add Customer");
+        btnFindCustomer = new JButton("Find Customer");
+        btnGetAllCustomers = new JButton("Get All Customers");
+        btnBack = new JButton("Back");
+        btnUpdate = new JButton("Update");
+        btnDelete = new JButton("Delete");
+        btnExit = new JButton("Exit");
+
+        btnAddCustomer.setFont(new Font("Arial", Font.PLAIN, 20));
+        btnFindCustomer.setFont(new Font("Arial", Font.PLAIN, 20));
+        btnGetAllCustomers.setFont(new Font("Arial", Font.PLAIN, 20));
+        btnBack.setFont(new Font("Arial", Font.PLAIN, 20));
+
+        // Panel North:
+        headerLabel = new JLabel("Header");
+        headerLabel.setFont(new Font("Arial", Font.PLAIN, 100));
+        mainPanelNorth.setLayout(new GridBagLayout());
+        mainPanelNorth.add(headerLabel);
+
+        // Panel Center:
+        mainPanelCenter.setLayout(new GridLayout(9,1));
+        mainPanelCenter.add(centerFiller1);
+        mainPanelCenter.add(btnAddCustomer);
+        mainPanelCenter.add(centerFiller2);
+        mainPanelCenter.add(btnFindCustomer);
+        mainPanelCenter.add(centerFiller3);
+        mainPanelCenter.add(btnGetAllCustomers);
+        mainPanelCenter.add(centerFiller4);
+        mainPanelCenter.add(btnBack);
+        mainPanelCenter.add(centerFiller5);
+
+        // Panel West
+        mainPanelWest.setLayout(new GridLayout(1,1));
+        mainPanelWest.add(westFiller1);
+
+        // Panel East
+        mainPanelEast.setLayout(new GridLayout(1,1));
+        mainPanelEast.add(eastFiller1);
+
+        // Panel South
+        mainPanelSouth = AddCustomerJP();
+        mainPanelSouth.setPreferredSize(new Dimension(600,400));
+
+        frame.add(mainPanelNorth, BorderLayout.NORTH);
+        frame.add(mainPanelCenter, BorderLayout.CENTER);
+        frame.add(mainPanelSouth, BorderLayout.SOUTH);
+        frame.add(mainPanelEast, BorderLayout.EAST);
+        frame.add(mainPanelWest, BorderLayout.WEST);
+    }
+
+    public void addCustomersUI() {
+        // Set UI:
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(800,800);
+        //frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
 
     public JPanel AddCustomerJP() {
         // Panels
@@ -124,6 +220,10 @@ public class AddCustomerPanel implements ActionListener {
         btnSave.addActionListener(this);
         btnClear.addActionListener(this);
         btnExit.addActionListener(this);
+        btnAddCustomer.addActionListener(this);
+        btnFindCustomer.addActionListener(this);
+        btnGetAllCustomers.addActionListener(this);
+        btnBack.addActionListener(this);
 
         // TextFields
         textFirstName = new JTextField();
@@ -204,7 +304,32 @@ public class AddCustomerPanel implements ActionListener {
         return addCustomerPanel;
     }
 
+
+
     public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Add Customer")) {
+            AddCustomerPanel acp = new AddCustomerPanel();
+            acp.addCustomersUI();
+            frame.dispose();
+        }
+
+        if (e.getActionCommand().equals("Find Customer")) {
+            FindCustomerByPanel fcbp = new FindCustomerByPanel();
+            fcbp.findCustomersUI();
+            frame.dispose();
+        }
+
+        if (e.getActionCommand().equals("Get All Customers")) {
+            CustomerHomeUI chui = new CustomerHomeUI();
+            chui.customersUI();
+            frame.dispose();
+        }
+
+        if (e.getActionCommand().equals("Back")) {
+            System.out.println("Back");
+            frame.dispose();
+        }
+
         if (e.getActionCommand().equals("Save")) {
             String customerFirstName = textFirstName.getText();
             String customerLastName = textLastName.getText();
@@ -276,6 +401,7 @@ public class AddCustomerPanel implements ActionListener {
         }
         if (e.getActionCommand().equals("Exit")) {
             System.out.println("Exit");
+            frame.dispose();
         }
     }
 

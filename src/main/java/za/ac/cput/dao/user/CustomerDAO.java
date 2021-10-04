@@ -126,6 +126,13 @@ public class CustomerDAO {
         return resultSet;
     }
 
+    public Customer getCustomerByID(String id) {
+        String url = baseURL + "/read/" + id;
+
+        ResponseEntity<Customer> response = restTemplate.getForEntity(url, Customer.class);
+
+        return response.getBody();
+    }
 
 
 }
