@@ -136,7 +136,7 @@ public class AddCustomerPanel implements ActionListener {
         panelEast = new JPanel();
 
         // Labels
-        jlabelTitle = new JLabel(" Add Customer: ", SwingConstants.CENTER);
+        jlabelTitle = new JLabel(" Add Customer", SwingConstants.CENTER);
         labelFirstName = new JLabel("First Name : ", SwingConstants.RIGHT);
         labelLastName = new JLabel("Last Name : ", SwingConstants.RIGHT);
         labelContactNumber = new JLabel("Contact Number : ", SwingConstants.RIGHT);
@@ -345,7 +345,7 @@ public class AddCustomerPanel implements ActionListener {
                 errorFirstName.setText(" * Invalid First Name ");
             } else {
                 checkFirstName = true;
-                errorFirstName.setText(" ");
+                errorFirstName.setText("");
             }
 
             if (customerLastName.equals("") || !customerLastName.matches("[a-zA-Z]+")) {

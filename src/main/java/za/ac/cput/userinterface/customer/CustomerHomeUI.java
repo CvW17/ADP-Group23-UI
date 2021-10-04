@@ -119,6 +119,7 @@ public class CustomerHomeUI implements ActionListener {
         btnFindCustomer.addActionListener(this);
         btnGetAllCustomers.addActionListener(this);
         btnBack.addActionListener(this);
+        btnUpdate.addActionListener(this);
 
         // Table:
         String[] tableColumnTitle = {"Customer ID","First Name", "Last Name", "Contact Number", "Email"};
@@ -267,6 +268,22 @@ public class CustomerHomeUI implements ActionListener {
         if (e.getActionCommand().equals("Back")) {
             System.out.println("Back");
             frame.dispose();
+        }
+        if (e.getActionCommand().equals("Update")) {
+            if (textCustomerID.getText().equals("") || textCustomerID.getText().equals(" ")) {
+                System.out.println("Error");
+            } else {
+                String textIDInput = textCustomerID.getText();
+                CustomerDAO cDAO = new CustomerDAO();
+                System.out.println("Update");
+                UpdateCustomerGUI ucGUI = new UpdateCustomerGUI();
+                Customer customer = cDAO.getCustomerByID(textIDInput);
+                JFrame uFrame = ucGUI.UpdateCustomerGUI(customer);
+                uFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                uFrame.setSize(780, 350);
+                uFrame.setLocationRelativeTo(null);
+                uFrame.setVisible(true);
+            }
         }
     }
 }

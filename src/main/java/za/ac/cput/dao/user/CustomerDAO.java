@@ -134,5 +134,12 @@ public class CustomerDAO {
         return response.getBody();
     }
 
+    public Customer updateCustomer(Customer customer) {
+        String url = baseURL + "/update";
+        ResponseEntity<Customer> response = restTemplate.postForEntity(url, customer, Customer.class);
+
+        return response.getBody();
+    }
+
 
 }

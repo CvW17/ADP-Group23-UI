@@ -1,6 +1,9 @@
 package za.ac.cput.userinterface.customer;
 
+import za.ac.cput.dao.user.CustomerDAO;
 import za.ac.cput.models.entity.user.Customer;
+import za.ac.cput.models.factory.user.CustomerFactory;
+import za.ac.cput.util.GenericHelper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,7 +33,12 @@ public class UpdateCustomerGUI implements ActionListener {
 
     private JTextField textFirstName, textLastName, textContactNumber, textEmail;
 
+    String tempFirstName, tempLastName, tempContactNumber, tempEmail;
+
+    Customer customer;
+
     public JFrame UpdateCustomerGUI(Customer c) {
+        customer = c;
         updateFrame = new JFrame("Update Customer");
         updateFrame.setLayout(new BorderLayout());
         updatePanelNorth = new JPanel();
@@ -38,6 +46,11 @@ public class UpdateCustomerGUI implements ActionListener {
         updatePanelWest = new JPanel();
         updatePanelCenter = new JPanel();
         updatePanelEast = new JPanel();
+
+        tempFirstName = c.getFirstName();
+        tempLastName = c.getLastName();
+        tempContactNumber = c.getContactNumber();
+        tempEmail = c.getEmail();
 
         labelTitle = new JLabel("Update Customer", SwingConstants.CENTER);
         labelFirstName = new JLabel("First Name : ", SwingConstants.RIGHT);
@@ -195,12 +208,82 @@ public class UpdateCustomerGUI implements ActionListener {
         updateFrame.add(updatePanelSouth, BorderLayout.SOUTH);
 
 
-
-
         return updateFrame;
     }
 
     public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("UpdateDB")) {
+            System.out.println("UpdateDB");
 
+            boolean checkFirstName = false;
+            boolean checkLastName = false;
+            boolean checkContactNumber = false;
+            boolean checkEmail = false;
+
+            if (textFirstName.getText().equals("") || textFirstName.getText().equals(" ")) {
+                errorFirstName.setText(" * Invalid First Name ");
+            } else {
+                checkFirstName = true;
+                errorFirstName.setText("");
+            }
+
+            if (textLastName.getText().equals("") || textLastName.getText().equals(" ")) {
+                errorLastName.setText(" * Invalid Last Name ");
+            } else {
+                checkLastName = true;
+                errorLastName.setText("");
+            }
+
+            if (textContactNumber.getText().equals("") || textContactNumber.getText().equals(" ")) {
+                errorContactNumber.setText(" * Invalid Contact Number ");
+            } else {
+                checkContactNumber = true;
+                errorContactNumber.setText("");
+            }
+
+            if (!GenericHelper.validEmail(textEmail.getText())) {
+                errorEmail.setText(" * Invalid Email ");
+            } else {
+                checkEmail = true;
+                errorEmail.setText("");
+            }
+
+            if (checkFirstName && checkLastName && checkContactNumber && checkEmail) {
+                System.out.println("All Valid!");
+                CustomerDAO customerDAO = new CustomerDAO();
+
+                System.out.println(textFirstName.getText());
+                System.out.println(textLastName.getText());
+                System.out.println(textContactNumber.getText());
+                System.out.println(textEmail.getText());
+
+                tempFirstName = textFirstName.getText();
+                tempLastName = textLastName.getText();
+                tempContactNumber = textContactNumber.getText();
+                tempEmail = textEmail.getText();
+
+                customer = new Customer.Builder().copy(customer)
+                        .firstName(textFirstName.getText())
+                        .lastName(textLastName.getText())
+                        .contactNumber(textContactNumber.getText())
+                        .email(textEmail.getText())
+                        .builder();
+
+                System.out.println(customer);
+                customerDAO.updateCustomer(customer);
+
+            }
+        }
+        if (e.getActionCommand().equals("Reset")) {
+            textFirstName.setText(tempFirstName);
+            textLastName.setText(tempLastName);
+            textContactNumber.setText(tempContactNumber);
+            textEmail.setText(tempEmail);
+        }
+
+        if (e.getActionCommand().equals("Exit")) {
+            updateFrame.dispose();
+        }
     }
+
 }

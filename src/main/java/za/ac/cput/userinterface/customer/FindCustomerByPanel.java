@@ -423,11 +423,8 @@ public class FindCustomerByPanel implements ActionListener {
         if (e.getActionCommand().equals("Update")) {
             System.out.println("Update");
             UpdateCustomerGUI ucGUI = new UpdateCustomerGUI();
-
-
             Customer customer = cDAO.getCustomerByID(textIDInput);
             JFrame uFrame = ucGUI.UpdateCustomerGUI(customer);
-
             uFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             uFrame.setSize(780, 350);
             uFrame.setLocationRelativeTo(null);
