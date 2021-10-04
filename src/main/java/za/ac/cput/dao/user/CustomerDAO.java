@@ -1,13 +1,17 @@
 package za.ac.cput.dao.user;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.coyote.Response;
+import org.apache.tomcat.util.json.JSONParser;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 import za.ac.cput.models.entity.user.Customer;
 
 import javax.swing.*;
+import java.util.*;
 
 
 public class CustomerDAO {
@@ -34,6 +38,92 @@ public class CustomerDAO {
         } catch(Error error) {
             throw error;
         }
+    }
+
+    public Set<Customer> searchFirstName(String searchTerm) {
+        Set<Customer> resultSet = new HashSet<>();
+        String url = baseURL + "/search/firstname/" + searchTerm;
+        HttpHeaders header = new HttpHeaders();
+        try {
+            HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
+            ResponseEntity<Customer[]> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, Customer[].class);
+            Customer[] customers = response.getBody();
+            for (Customer c : customers) {
+                resultSet.add(c);
+                System.out.println(c);
+            }
+        }catch (Error error) {
+            throw error;
+        }
+        return resultSet;
+    }
+
+    public Set<Customer> searchLastName(String searchTerm) {
+        Set<Customer> resultSet = new HashSet<>();
+        String url = baseURL + "/search/lastname/" + searchTerm;
+        HttpHeaders header = new HttpHeaders();
+        try {
+            HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
+            ResponseEntity<Customer[]> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, Customer[].class);
+            Customer[] customers = response.getBody();
+            for (Customer c : customers) {
+                resultSet.add(c);
+                System.out.println(c);
+            }
+        }catch (Error error) {
+            throw error;
+        }
+        return resultSet;
+    }
+
+    public Set<Customer> searchContactNumber(String searchTerm) {
+        Set<Customer> resultSet = new HashSet<>();
+        String url = baseURL + "/search/contactnumber/" + searchTerm;
+        HttpHeaders header = new HttpHeaders();
+        try {
+            HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
+            ResponseEntity<Customer[]> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, Customer[].class);
+            Customer[] customers = response.getBody();
+            for (Customer c : customers) {
+                resultSet.add(c);
+                System.out.println(c);
+            }
+        }catch (Error error) {
+            throw error;
+        }
+        return resultSet;
+    }
+
+    public Set<Customer> searchEmail(String searchTerm) {
+        Set<Customer> resultSet = new HashSet<>();
+        String url = baseURL + "/search/email/" + searchTerm;
+        HttpHeaders header = new HttpHeaders();
+        try {
+            HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
+            ResponseEntity<Customer[]> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, Customer[].class);
+            Customer[] customers = response.getBody();
+            for (Customer c : customers) {
+                resultSet.add(c);
+                System.out.println(c);
+            }
+        }catch (Error error) {
+            throw error;
+        }
+        return resultSet;
+    }
+
+    public Set<Customer> getAllCustomers() {
+        Set<Customer> resultSet = new HashSet<>();
+        String url = baseURL + "/getall";
+        HttpHeaders header = new HttpHeaders();
+        HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
+
+        ResponseEntity<Customer[]> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, Customer[].class);
+        Customer[] customers = response.getBody();
+        for (Customer c : customers) {
+            resultSet.add(c);
+        }
+        return resultSet;
     }
 
 

@@ -51,7 +51,6 @@ public class AddCustomerPanel implements ActionListener {
         errorContactNumber = new JLabel(" ");
         errorEmail = new JLabel(" ");
 
-
         // Fillers
         filler1 = new JLabel(" ");
         filler2 = new JLabel(" ");
@@ -201,11 +200,6 @@ public class AddCustomerPanel implements ActionListener {
         addCustomerPanel.add(panelCenter, BorderLayout.CENTER);
         addCustomerPanel.add(panelEast, BorderLayout.EAST);
         addCustomerPanel.add(panelSouth, BorderLayout.SOUTH);
-
-
-
-
-
 
         return addCustomerPanel;
     }

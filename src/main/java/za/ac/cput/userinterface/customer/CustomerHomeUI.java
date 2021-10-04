@@ -12,7 +12,7 @@ public class CustomerHomeUI implements ActionListener {
     private JFrame frame;
     private JPanel panelNorth, panelCenter, panelSouth, panelEast, panelWest;
     private JLabel headerLabel;
-    private JButton btnAddCustomer, btnFindCustomer, btnUpdateCustomer, btnDeleteCustomer;
+    private JButton btnAddCustomer, btnFindCustomer, btnGetAllCustomers, btnBack;
     private JLabel centerFiller1, centerFiller2, centerFiller3, centerFiller4, centerFiller5, centerFiller6;
     private JLabel westFiller1;
     private JLabel eastFiller1;
@@ -40,18 +40,18 @@ public class CustomerHomeUI implements ActionListener {
         // Buttons
         btnAddCustomer = new JButton("Add Customer");
         btnFindCustomer = new JButton("Find Customer");
-        btnUpdateCustomer = new JButton("Update Customer Details");
-        btnDeleteCustomer = new JButton("Remove Customer");
+        btnGetAllCustomers = new JButton("Get All Customers");
+        btnBack = new JButton("Back");
 
         btnAddCustomer.setFont(new Font("Arial", Font.PLAIN, 20));
         btnFindCustomer.setFont(new Font("Arial", Font.PLAIN, 20));
-        btnUpdateCustomer.setFont(new Font("Arial", Font.PLAIN, 20));
-        btnDeleteCustomer.setFont(new Font("Arial", Font.PLAIN, 20));
+        btnGetAllCustomers.setFont(new Font("Arial", Font.PLAIN, 20));
+        btnBack.setFont(new Font("Arial", Font.PLAIN, 20));
 
         btnAddCustomer.addActionListener(this);
         btnFindCustomer.addActionListener(this);
-        btnUpdateCustomer.addActionListener(this);
-        btnDeleteCustomer.addActionListener(this);
+        btnGetAllCustomers.addActionListener(this);
+        btnBack.addActionListener(this);
 
         // Panel North:
         headerLabel = new JLabel("Header");
@@ -66,9 +66,9 @@ public class CustomerHomeUI implements ActionListener {
         panelCenter.add(centerFiller2);
         panelCenter.add(btnFindCustomer);
         panelCenter.add(centerFiller3);
-        panelCenter.add(btnUpdateCustomer);
+        panelCenter.add(btnGetAllCustomers);
         panelCenter.add(centerFiller4);
-        panelCenter.add(btnDeleteCustomer);
+        panelCenter.add(btnBack);
         panelCenter.add(centerFiller5);
 
         // Panel South(Placeholder panel):
@@ -109,13 +109,36 @@ public class CustomerHomeUI implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Add Customer")) {
             AddCustomerPanel acp = new AddCustomerPanel();
-            System.out.println("Add Customer");
             JPanel addCustomer = acp.AddCustomerJP();
             frame.remove(panelSouth);
             addCustomer.setPreferredSize(new Dimension(600,400));
             frame.add(addCustomer, BorderLayout.SOUTH);
             frame.invalidate();
             frame.validate();
+        }
+
+        if (e.getActionCommand().equals("Find Customer")) {
+            FindCustomerByPanel fcbp = new FindCustomerByPanel();
+            JPanel findCustomer = fcbp.FindCustomerJP();
+            frame.remove(panelSouth);
+            findCustomer.setPreferredSize(new Dimension(300,400));
+            frame.add(findCustomer, BorderLayout.SOUTH);
+            frame.invalidate();
+            frame.validate();
+        }
+
+        if (e.getActionCommand().equals("Get All Customers")) {
+            GetAllCustomersPanel gacp = new GetAllCustomersPanel();
+            JPanel AllCustomersPanel = gacp.GetAllPanel();
+            frame.remove(panelSouth);
+            AllCustomersPanel.setPreferredSize(new Dimension(300,400));
+            frame.add(AllCustomersPanel, BorderLayout.SOUTH);
+            frame.invalidate();
+            frame.validate();
+        }
+
+        if (e.getActionCommand().equals("Back")) {
+            System.out.println("Back");
         }
     }
 }
