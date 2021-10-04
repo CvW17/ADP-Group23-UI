@@ -2,6 +2,7 @@ package za.ac.cput.dao.user;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.netty.handler.codec.http.HttpResponse;
 import org.apache.coyote.Response;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.http.*;
@@ -139,6 +140,16 @@ public class CustomerDAO {
         ResponseEntity<Customer> response = restTemplate.postForEntity(url, customer, Customer.class);
 
         return response.getBody();
+    }
+
+    public String deleteCustomer(Customer c) {
+        String id = c.getCustomerID();
+        String url = baseURL + "/delete/" + id;
+        System.out.println(url);
+        restTemplate.delete(url);
+        System.out.println("Customer deleted");
+
+        return "Success";
     }
 
 

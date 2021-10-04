@@ -433,6 +433,18 @@ public class FindCustomerByPanel implements ActionListener {
         }
         if (e.getActionCommand().equals("Delete")) {
             System.out.println("Delete");
+            if (textCustomerID.getText().equals("") || textCustomerID.getText().equals(" ")) {
+                System.out.println("Error");
+            } else {
+                textIDInput = textCustomerID.getText();
+                Customer customer = cDAO.getCustomerByID(textIDInput);
+                DeleteCustomerGUI dcGUI = new DeleteCustomerGUI();
+                JFrame dFrame = dcGUI.deleteCustomerFrame(customer);
+                dFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                dFrame.setSize(780, 350);
+                dFrame.setLocationRelativeTo(null);
+                dFrame.setVisible(true);
+            }
         }
         if (e.getActionCommand().equals("Exit")) {
             System.out.println("Exit");
