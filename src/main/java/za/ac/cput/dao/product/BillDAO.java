@@ -21,7 +21,7 @@ public class BillDAO
 
     }
 
-    public String addBill(Bill bill)
+    public void addBill(Bill bill)
     {
         String url = baseURL + "/create";
         HttpEntity<Bill> send;
@@ -31,15 +31,17 @@ public class BillDAO
         {
             send = new HttpEntity<>(bill);
             receive = restTemplate.exchange(url, HttpMethod.POST, send, Bill.class);
-
-            if (receive.getStatusCode().equals(HttpStatus.valueOf(200)))
-                return "Success";
-            else return "Error";
         }
         catch  (Error error)
         {
             throw error;
         }
+    }
+
+    public void deleteBill(String id)
+    {
+        String url = baseURL + "/delete/" + id;
+        restTemplate.delete(url);
     }
 
     public Set<Bill> getAll()
