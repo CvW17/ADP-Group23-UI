@@ -84,6 +84,13 @@ public class BillUI extends JFrame implements ActionListener
                 this.dispose();
                 break;
             }
+
+            case("Delete"):
+            {
+                new DeleteBillGUI().setGUI();
+                this.dispose();
+                break;
+            }
         }
     }
 }
