@@ -1,9 +1,6 @@
-package za.ac.cput.dao.user;
+package za.ac.cput.dao.product;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import za.ac.cput.models.entity.product.Bill;
 
@@ -18,6 +15,27 @@ public class BillDAO
     public BillDAO()
     {
 
+    }
+
+    public String addBill(Bill bill)
+    {
+        String url = baseURL + "/create";
+        HttpEntity<Bill> send;
+        ResponseEntity<Bill> receive;
+
+        try
+        {
+            send = new HttpEntity<>(bill);
+            receive = restTemplate.exchange(url, HttpMethod.POST, send, Bill.class);
+
+            if (receive.getStatusCode().equals(HttpStatus.valueOf(200)))
+                return "Success";
+            else return "Error";
+        }
+        catch  (Error error)
+        {
+            throw error;
+        }
     }
 
     public Set<Bill> getAll()
