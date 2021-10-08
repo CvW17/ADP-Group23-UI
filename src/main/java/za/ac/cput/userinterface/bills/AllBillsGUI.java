@@ -1,3 +1,7 @@
+//AllBillsGUI.java
+//Interface for Bill(Get All)
+//Author: Cameron van Wyk(219088470)
+
 package za.ac.cput.userinterface.bills;
 
 import za.ac.cput.dao.product.BillDAO;

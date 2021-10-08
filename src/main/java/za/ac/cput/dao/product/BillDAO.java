@@ -1,3 +1,7 @@
+//BillDAO.java
+//Class for BillDAO
+//Author: Cameron van Wyk(219088470)
+
 package za.ac.cput.dao.product;
 
 import org.springframework.http.*;
