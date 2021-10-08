@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 public class BillUI extends JFrame implements ActionListener
 {
     private JPanel pnlNorth, pnlCenter;
-    private JButton btnHome, btnAdd, btnRead, btnDelete, btnUpdate, btnGetAll;
+    private JButton btnHome, btnAdd, btnDelete, btnUpdate, btnGetAll;
 
     public BillUI()
     {
@@ -24,7 +24,6 @@ public class BillUI extends JFrame implements ActionListener
 
         btnHome = new JButton("Home");
         btnAdd = new JButton("Add new Bill");
-        btnRead = new JButton("Read Data");
         btnDelete = new JButton("Delete");
         btnUpdate = new JButton("Update");
         btnGetAll = new JButton("Get All");
@@ -37,7 +36,6 @@ public class BillUI extends JFrame implements ActionListener
 
         btnAdd.addActionListener(this);
         btnHome.addActionListener(this);
-        btnRead.addActionListener(this);
         btnDelete.addActionListener(this);
         btnUpdate.addActionListener(this);
         btnGetAll.addActionListener(this);
@@ -45,7 +43,6 @@ public class BillUI extends JFrame implements ActionListener
         pnlCenter.setLayout(new GridLayout(6, 1));
         pnlCenter.add(btnHome);
         pnlCenter.add(btnAdd);
-        pnlCenter.add(btnRead);
         pnlCenter.add(btnUpdate);
         pnlCenter.add(btnDelete);
         pnlCenter.add(btnGetAll);
