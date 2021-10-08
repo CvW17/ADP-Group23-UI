@@ -56,7 +56,7 @@ public class AllBillsGUI extends JFrame implements ActionListener
         this.setTitle("Display All Bills");
     }
 
-    private JScrollPane Display()
+    public JScrollPane Display()
     {
         String[] table = {"Bill ID", "SubTotal", "Tax", "Total"};
 
