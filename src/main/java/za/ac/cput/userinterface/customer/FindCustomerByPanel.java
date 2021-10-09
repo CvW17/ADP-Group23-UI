@@ -31,13 +31,14 @@ public class FindCustomerByPanel implements ActionListener {
     private JLabel filler20, filler21, filler22, filler23, filler24, filler25, filler26, filler27;
     private JLabel filler28, filler29, filler30, filler31, filler32;
     private JLabel filler33, filler34, filler35, filler36;
-    private JLabel filler40, filler41, filler42;
+    private JLabel filler40, filler41, filler42, filler43, filler44, filler45;
 
     private JTextField textSearchField, textCustomerID;
 
     private JLabel labelTitle, labelSearchOption, labelEnterKeyword, labelError;
 
     private JLabel CustomerIDLabel;
+    private JLabel errorID;
 
     private JComboBox comboboxSearchTerm;
 
@@ -186,6 +187,9 @@ public class FindCustomerByPanel implements ActionListener {
         filler40 = new JLabel(" ");
         filler41 = new JLabel(" ");
         filler42 = new JLabel(" ");
+        filler43 = new JLabel(" ");
+        filler44 = new JLabel(" ");
+        filler45 = new JLabel(" ");
 
         // Textfield
         textSearchField = new JTextField("");
@@ -196,6 +200,9 @@ public class FindCustomerByPanel implements ActionListener {
         labelEnterKeyword.setFont(new Font("Arial", Font.BOLD, 15));
         labelSearchOption.setFont(new Font("Arial", Font.BOLD, 15));
         labelError.setFont(new Font("Arial", Font.BOLD, 15));
+        errorID = new JLabel(" ", SwingConstants.LEFT);
+        errorID.setForeground(Color.red);
+        errorID.setFont(new Font("Arial", Font.BOLD, 15));
 
         labelError.setForeground(Color.RED);
 
@@ -222,9 +229,9 @@ public class FindCustomerByPanel implements ActionListener {
         // Panel Styles
         searchPanelNorth.setLayout(new GridLayout(2, 3));
         searchPanelWest.setLayout(new GridLayout(1, 1));
-        searchPanelCenter.setLayout(new GridLayout(6, 3));
+        searchPanelCenter.setLayout(new GridLayout(5, 3));
         searchPanelEast.setLayout(new GridLayout(1, 1));
-        searchPanelSouth.setLayout(new GridLayout(4, 5));
+        searchPanelSouth.setLayout(new GridLayout(5, 5));
 
         // Add to North
         searchPanelNorth.add(filler1);
@@ -259,14 +266,20 @@ public class FindCustomerByPanel implements ActionListener {
         searchPanelCenter.add(filler14);
         searchPanelCenter.add(filler15);
 
-        searchPanelCenter.add(filler40);
-        searchPanelCenter.add(filler41);
-        searchPanelCenter.add(filler42);
+//        searchPanelCenter.add(filler40);
+//        searchPanelCenter.add(filler41);
+//        searchPanelCenter.add(filler42);
 
         // Add to East
         searchPanelEast.add(filler20);
 
         // Add to South
+        searchPanelSouth.add(filler40);
+        searchPanelSouth.add(filler41);
+        searchPanelSouth.add(errorID);
+        searchPanelSouth.add(filler42);
+        searchPanelSouth.add(filler43);
+
         searchPanelSouth.add(filler21);
         searchPanelSouth.add(CustomerIDLabel);
         searchPanelSouth.add(textCustomerID);
@@ -421,21 +434,30 @@ public class FindCustomerByPanel implements ActionListener {
 
         // Customer ID Buttons
         if (e.getActionCommand().equals("Update")) {
-            System.out.println("Update");
-            UpdateCustomerGUI ucGUI = new UpdateCustomerGUI();
-            Customer customer = cDAO.getCustomerByID(textIDInput);
-            JFrame uFrame = ucGUI.UpdateCustomerGUI(customer);
-            uFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            uFrame.setSize(780, 350);
-            uFrame.setLocationRelativeTo(null);
-            uFrame.setVisible(true);
 
+            if (textCustomerID.getText().equals("") || textCustomerID.getText().equals(" ")) {
+                System.out.println("Error");
+                errorID.setText("Error: Invalid ID");
+            }
+            else {
+                errorID.setText(" ");
+                System.out.println("Update");
+                UpdateCustomerGUI ucGUI = new UpdateCustomerGUI();
+                Customer customer = cDAO.getCustomerByID(textIDInput);
+                JFrame uFrame = ucGUI.UpdateCustomerGUI(customer);
+                uFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                uFrame.setSize(780, 350);
+                uFrame.setLocationRelativeTo(null);
+                uFrame.setVisible(true);
+            }
         }
         if (e.getActionCommand().equals("Delete")) {
             System.out.println("Delete");
             if (textCustomerID.getText().equals("") || textCustomerID.getText().equals(" ")) {
                 System.out.println("Error");
+                errorID.setText("Error: Invalid ID");
             } else {
+                errorID.setText(" ");
                 textIDInput = textCustomerID.getText();
                 Customer customer = cDAO.getCustomerByID(textIDInput);
                 DeleteCustomerGUI dcGUI = new DeleteCustomerGUI();
@@ -450,7 +472,5 @@ public class FindCustomerByPanel implements ActionListener {
             System.out.println("Exit");
             frame.dispose();
         }
-
     }
-
 }

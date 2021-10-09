@@ -12,6 +12,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import za.ac.cput.models.entity.user.Customer;
 
 import javax.swing.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 
@@ -19,16 +20,17 @@ public class CustomerDAO {
 
     private RestTemplate restTemplate = new RestTemplate();
     private String baseURL = "http://localhost:8080/customer";
-
+    private String securityUsername = "user";
+    private String securityPassword = "password";
 
     public String addCustomerToDB(Customer customer) {
         String url = baseURL + "/create";
-        HttpEntity<Customer> request;
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
         ResponseEntity<Customer> response;
-
         try {
             // Send Customer
-            request = new HttpEntity<>(customer);
+            HttpEntity<Customer> request = new HttpEntity<>(customer, header);
             response = restTemplate.exchange(url, HttpMethod.POST, request, Customer.class);
 
             if (response.getStatusCode() == HttpStatus.valueOf(200)) {
@@ -45,6 +47,7 @@ public class CustomerDAO {
         Set<Customer> resultSet = new HashSet<>();
         String url = baseURL + "/search/firstname/" + searchTerm;
         HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
         try {
             HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
             ResponseEntity<Customer[]> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, Customer[].class);
@@ -63,6 +66,7 @@ public class CustomerDAO {
         Set<Customer> resultSet = new HashSet<>();
         String url = baseURL + "/search/lastname/" + searchTerm;
         HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
         try {
             HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
             ResponseEntity<Customer[]> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, Customer[].class);
@@ -81,6 +85,7 @@ public class CustomerDAO {
         Set<Customer> resultSet = new HashSet<>();
         String url = baseURL + "/search/contactnumber/" + searchTerm;
         HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
         try {
             HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
             ResponseEntity<Customer[]> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, Customer[].class);
@@ -99,6 +104,7 @@ public class CustomerDAO {
         Set<Customer> resultSet = new HashSet<>();
         String url = baseURL + "/search/email/" + searchTerm;
         HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
         try {
             HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
             ResponseEntity<Customer[]> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, Customer[].class);
@@ -117,6 +123,7 @@ public class CustomerDAO {
         Set<Customer> resultSet = new HashSet<>();
         String url = baseURL + "/getall";
         HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
         HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
 
         ResponseEntity<Customer[]> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, Customer[].class);
