@@ -31,6 +31,8 @@ public class CustomerHomeUI implements ActionListener {
 
     private JLabel jlabelTitle, CustomerIDLabel;
 
+    private JLabel errorID;
+
     private JTextField textCustomerID;
 
     private JTable getAllTable;
@@ -52,6 +54,9 @@ public class CustomerHomeUI implements ActionListener {
         jlabelTitle = new JLabel(" All Customers ", SwingConstants.CENTER);
         jlabelTitle.setFont(new Font("Arial", Font.BOLD, 30));
         CustomerIDLabel = new JLabel(" Enter Customer ID :  ", SwingConstants.RIGHT);
+        errorID = new JLabel(" ", SwingConstants.LEFT);
+        errorID.setForeground(Color.red);
+        errorID.setFont(new Font("Arial", Font.BOLD, 15));
 
         // Textfield
         textCustomerID = new JTextField("");
@@ -169,7 +174,7 @@ public class CustomerHomeUI implements ActionListener {
         bottomPanelCenter.setLayout(new GridLayout(1,1));
         bottomPanelSouth.setLayout(new GridLayout(5,5));
 
-            // Add to paneSouth
+            // Add to panelSouth
             bottomPanelNorth.add(filler1);
             bottomPanelNorth.add(jlabelTitle);
             bottomPanelNorth.add(filler2);
@@ -185,7 +190,7 @@ public class CustomerHomeUI implements ActionListener {
 
             bottomPanelSouth.add(filler5);
             bottomPanelSouth.add(filler6);
-            bottomPanelSouth.add(filler7);
+            bottomPanelSouth.add(errorID);
             bottomPanelSouth.add(filler8);
             bottomPanelSouth.add(filler9);
 
@@ -273,6 +278,7 @@ public class CustomerHomeUI implements ActionListener {
         if (e.getActionCommand().equals("Update")) {
             if (textCustomerID.getText().equals("") || textCustomerID.getText().equals(" ")) {
                 System.out.println("Error");
+                errorID.setText("Error: Invalid ID");
             } else {
                 String textIDInput = textCustomerID.getText();
                 CustomerDAO cDAO = new CustomerDAO();
@@ -289,6 +295,7 @@ public class CustomerHomeUI implements ActionListener {
         if (e.getActionCommand().equals("Delete")) {
             if (textCustomerID.getText().equals("") || textCustomerID.getText().equals(" ")) {
                 System.out.println("Error");
+                errorID.setText("Error: Invalid ID");
             } else {
                 String textIDInput = textCustomerID.getText();
                 CustomerDAO cDAO = new CustomerDAO();
