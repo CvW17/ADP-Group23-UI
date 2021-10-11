@@ -1,3 +1,8 @@
+/**
+ *  Name: Tye Walker
+ *  Student Number: 218338562
+ *  Group: 23
+ */
 package za.ac.cput.userinterface.customer;
 
 import za.ac.cput.dao.user.CustomerDAO;
