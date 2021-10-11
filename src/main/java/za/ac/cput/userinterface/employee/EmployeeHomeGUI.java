@@ -4,105 +4,136 @@
  */
 package za.ac.cput.userinterface.employee;
 
-import za.ac.cput.userinterface.customer.CustomerHomeUI;
+import za.ac.cput.dao.user.EmployeeDAO;
+import za.ac.cput.models.entity.user.Employee;
 import za.ac.cput.userinterface.home.HomeUI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Set;
 
-public class EmployeeHomeGUI extends JFrame implements ActionListener{
+public class EmployeeHomeGUI extends JFrame implements ActionListener {
     private JFrame main;
     private JPanel panelNorth, panelCenter, panelSouth, panelEast, panelWest;
-    private JLabel headerLabel;
-    private JButton btnAddEmployee, btnFindEmployee, btnUpdateEmployee, btnDeleteEmployee, btnMenu;
-    private JLabel centerFiller1, centerFiller2, centerFiller3, centerFiller4, centerFiller5, centerFiller6;
-    private JLabel westFiller1;
-    private JLabel eastFiller1;
-    private JLabel southFiller1;
+    private JLabel lblHeading;
+    private JButton btnAddEmployee, btnFindEmployee, btnUpdateEmployee, btnDeleteEmployee, btnMenu, btnAll;
+    private JLabel lblempID;
+    private JTextField txtempID;
+    private JTable empTable;
+
 
     public EmployeeHomeGUI() {
-        main = new JFrame("Employee");
+        main = new JFrame("Employee Home Menu");
         panelNorth = new JPanel();
         panelCenter = new JPanel();
         panelSouth = new JPanel();
         panelEast = new JPanel();
         panelWest = new JPanel();
 
-        // Temp JLabels
-        centerFiller1 = new JLabel(" ");
-        centerFiller2 = new JLabel(" ");
-        centerFiller3 = new JLabel(" ");
-        centerFiller4 = new JLabel(" ");
-        centerFiller5 = new JLabel(" ");
-        centerFiller6 = new JLabel(" ");
-        westFiller1 = new JLabel("                                                                                       ");
-        eastFiller1 = new JLabel("                                                                                       ");
-        southFiller1 = new JLabel(" ");
+        // JLabels
+        lblHeading = new JLabel("Employee Menu");
+        lblempID = new JLabel("Enter Employee ID to Find:");
+
+        //Jlabel fonts and styles
+        lblHeading.setFont(new Font("Arial", Font.PLAIN, 25));
+        lblempID.setFont(new Font("Arial", Font.PLAIN, 25));
+
+        //JtextField and Style
+        txtempID = new JTextField("");
+        txtempID.setPreferredSize(new Dimension(200,24));
 
         // Buttons
         btnAddEmployee = new JButton("Add Employee");
-        btnFindEmployee  = new JButton("Find Employee ");
-        btnUpdateEmployee  = new JButton("Update Employee ");
-        btnDeleteEmployee  = new JButton("Remove Employee ");
+        btnFindEmployee = new JButton("Find Employee ");
+        btnUpdateEmployee = new JButton("Update Employee");
+        btnDeleteEmployee = new JButton("Remove Employee");
         btnMenu = new JButton("Main Menu");
+        btnAll = new JButton("Show All Employees");
 
-        btnAddEmployee .setFont(new Font("Arial", Font.PLAIN, 20));
-        btnFindEmployee .setFont(new Font("Arial", Font.PLAIN, 20));
-        btnUpdateEmployee .setFont(new Font("Arial", Font.PLAIN, 20));
-        btnDeleteEmployee .setFont(new Font("Arial", Font.PLAIN, 20));
-        btnMenu .setFont(new Font("Arial", Font.PLAIN, 20));
+        //Button styles and fonts
+        btnAddEmployee.setFont(new Font("Arial", Font.PLAIN, 20));
+        btnFindEmployee.setFont(new Font("Arial", Font.PLAIN, 20));
+        btnUpdateEmployee.setFont(new Font("Arial", Font.PLAIN, 20));
+        btnDeleteEmployee.setFont(new Font("Arial", Font.PLAIN, 20));
+        btnMenu.setFont(new Font("Arial", Font.PLAIN, 20));
+        btnAll.setFont(new Font("Arial", Font.PLAIN, 20));
 
         btnAddEmployee.addActionListener(this);
         btnFindEmployee.addActionListener(this);
         btnUpdateEmployee.addActionListener(this);
         btnDeleteEmployee.addActionListener(this);
         btnMenu.addActionListener(this);
+        btnAll.addActionListener(this);
 
 
-
-        // Panel North:
-        headerLabel = new JLabel("Employee");
-        headerLabel.setFont(new Font("Arial", Font.PLAIN, 100));
+        // North Panel
         panelNorth.setLayout(new GridBagLayout());
-        panelNorth.add(headerLabel);
+        panelNorth.add(lblHeading);
 
-        // Panel Center:
-        panelCenter.setLayout(new GridLayout(10,1));
-        panelCenter.add(centerFiller1);
-        panelCenter.add(btnAddEmployee);
-        panelCenter.add(centerFiller2);
-        panelCenter.add(btnFindEmployee);
-        panelCenter.add(centerFiller3);
-        panelCenter.add(btnUpdateEmployee);
-        panelCenter.add(centerFiller4);
-        panelCenter.add(btnDeleteEmployee);
-        panelCenter.add(centerFiller5);
-        panelCenter.add(btnMenu);
+        // Center Panel
+        panelCenter.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(3,3,3,3);
 
-        // Panel South(Placeholder panel):
-        panelSouth.setLayout(new GridLayout(1,1));
-        panelSouth.setPreferredSize(new Dimension(600,400));
-        panelSouth.add(southFiller1);
+        gbc.gridx = 1;
+        gbc.gridy =0;
+        panelCenter.add(btnAddEmployee,gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy =1;
+        panelCenter.add(btnFindEmployee,gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy =2;
+        panelCenter.add(btnUpdateEmployee,gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy =3;
+        panelCenter.add(btnDeleteEmployee,gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy =4;
+        panelCenter.add(btnAll,gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy =5;
+        panelCenter.add(btnMenu,gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy =6;
+        panelCenter.add(lblempID,gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy =6;
+        panelCenter.add(txtempID,gbc);
+
+        // South Panel
+        panelSouth.setLayout(new FlowLayout());
+        panelSouth.setPreferredSize(new Dimension(600, 400));
 
 
+        //Table with employee IDs only
+        EmployeeDAO emp = new EmployeeDAO();
+        Set<Employee> employees = emp.getAll();
+        String[] ColumnNames = {"Employee ID"};
+        String[][] data = new String[employees.size()][1];
+        int i = 0;
+        for (Employee e : employees) {
+            data[i][0] = e.getEmployeeID();
+            i++;
+        }
 
-
-        // uncomment to check size of panel
-//         panelSouth.setBackground(Color.GREEN);
-
-        panelWest.setLayout(new GridLayout(1,1));
-        panelWest.add(westFiller1);
-
-        panelEast.setLayout(new GridLayout(1,1));
-        panelEast.add(eastFiller1);
+        empTable = new JTable(data, ColumnNames);
+        JScrollPane table = new JScrollPane(empTable);
+        panelSouth.add(table);
 
         main.add(panelNorth, BorderLayout.NORTH);
         main.add(panelCenter, BorderLayout.CENTER);
         main.add(panelSouth, BorderLayout.SOUTH);
-        main.add(panelEast, BorderLayout.EAST);
-        main.add(panelWest, BorderLayout.WEST);
+
 
     }
 
@@ -122,22 +153,53 @@ public class EmployeeHomeGUI extends JFrame implements ActionListener{
             System.out.println("Add");
             new AddEmployeeGUI().setAddGUI();
             main.dispose();
-
         }
 
         if(e.getActionCommand().equals("Main Menu")) {
             System.out.println("Back To Main Menu");
             new HomeUI().setUI();
             main.dispose();
-
-
         }
 
         if(e.getActionCommand().equals("Cancel")) {
             System.out.println("Cancel");
+            new HomeUI().setUI();
+            main.dispose();
+        }
+
+        if (txtempID.getText().equals("") || txtempID.getText().equals(" ")) {
+            System.out.println("No Data Entered");
+        } else {
+            String textIDInput = txtempID.getText();
+            EmployeeDAO dao = new EmployeeDAO();
+            Employee employee = dao.FindEmployeeByID(textIDInput);
+            FindEmployeeGUI findGUI = new FindEmployeeGUI();
+            JFrame frame = findGUI.FindEmployee(employee);
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setSize(780, 350);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            main.dispose();
+        }
+
+        if(e.getActionCommand().equals("Show All Employees")) {
+            System.out.println("Get All Employees");
+            new AllEmployeeGUI().setAllGUI();
+            main.dispose();
+        }
+        if(e.getActionCommand().equals("Update Employee")) {
+            System.out.println("Find Employee");
+            new AllEmployeeGUI().setAllGUI();
+            main.dispose();
+        }
+        if(e.getActionCommand().equals("Remove Employee")) {
+            System.out.println("Find Employee");
+            new AllEmployeeGUI().setAllGUI();
+            main.dispose();
         }
 
 
     }
 
-}
+    }
+

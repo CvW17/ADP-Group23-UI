@@ -114,8 +114,6 @@ public class AddEmployeeGUI extends JFrame implements ActionListener {
         gbc.gridy =3;
         center.add(error4,gbc);
 
-
-
         //Panel South
         south.add(btnAdd);
         south.add(btnReset);
@@ -177,59 +175,59 @@ public class AddEmployeeGUI extends JFrame implements ActionListener {
 
             double rate = Double.parseDouble(empRate);
 
-            boolean checkName = false;
-            boolean checkSurname = false;
-            boolean checkPhone = false;
-            boolean checkRate = false;
+            boolean validateName = false;
+            boolean validateSurname = false;
+            boolean validatePhone = false;
+            boolean validateRate = false;
 
             if (empFirstName.equals("") || !empFirstName.matches("[a-zA-Z]+")) {
                 error1.setText(" * Invalid Data entered");
             } else {
-                checkName = true;
+                validateName = true;
                 error1.setText(" ");
             }
 
             if (empLastName.equals("") || !empLastName.matches("[a-zA-Z]+")) {
                 error2.setText(" * Invalid Data entered");
             } else {
-                checkSurname = true;
+                validateSurname = true;
                 error2.setText(" ");
             }
 
             if (!GenericHelper.validContactNumber(empPhone)) {
                 error3.setText(" * Invalid Data entered ");
             } else {
-                checkPhone = true;
+                validatePhone = true;
                 error3.setText(" ");
             }
 
             if (empRate.equals("")) {
                 error4.setText(" * Field Cant be empty");
             } else {
-                checkRate = true;
+                validateRate = true;
                 error4.setText(" ");
             }
 
-            if (checkName && checkSurname && checkPhone && checkRate) {
-                System.out.println("All Valid!");
+            if (validateName && validateSurname && validatePhone && validateRate) {
+                System.out.println("Validation Check Successful!");
 
                 EmployeeDAO empDAO = new EmployeeDAO();
 
                 // Create Employee
                 Employee emp = EmployeeFactory.build(empFirstName, empLastName, empPhone, rate);
 
-                // Call method to add to DB
-                String answer = empDAO.addEmployee(emp);
 
-                // Display Result
-                if (answer.equals("Employee Added to Database")) {
-                    JOptionPane.showMessageDialog(null, answer, "Add Employee", JOptionPane.INFORMATION_MESSAGE);
+                String data = empDAO.addEmployee(emp);
+
+
+                if (data.equals("Employee Added to Database")) {
+                    JOptionPane.showMessageDialog(null,"Employee Added to Database");
                     txtName.setText("");
                     txtSurname.setText("");
                     txtPhone.setText("");
                     txtRate.setText("");
                 } else {
-                    JOptionPane.showMessageDialog(null, answer, "Error", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, data, "Error", JOptionPane.INFORMATION_MESSAGE);
                 }
 
             }
