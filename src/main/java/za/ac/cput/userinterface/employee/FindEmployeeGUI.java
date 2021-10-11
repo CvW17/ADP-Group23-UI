@@ -117,10 +117,10 @@ public class FindEmployeeGUI extends JFrame implements ActionListener {
         //Employee Rate Details
         gbc.gridx = 0;
         gbc.gridy =4;
-        //center.add(lblRate,gbc);
+        center.add(lblRate,gbc);
         gbc.gridx =1;
         gbc.gridy =4;
-        //center.add(lblempRate,gbc);
+        center.add(lblempRate,gbc);
 
         //South Panel
         south.add(btnMenu);
