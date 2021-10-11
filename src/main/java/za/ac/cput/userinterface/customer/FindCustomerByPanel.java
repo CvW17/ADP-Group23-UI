@@ -394,6 +394,8 @@ public class FindCustomerByPanel implements ActionListener {
         if (e.getActionCommand().equals("Back")) {
             System.out.println("Back");
             frame.dispose();
+            CustomerHomeUI chui = new CustomerHomeUI();
+            chui.customersUI();
         }
 
         // Search Functionality

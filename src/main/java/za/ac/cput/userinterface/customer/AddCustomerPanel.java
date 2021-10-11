@@ -328,6 +328,8 @@ public class AddCustomerPanel implements ActionListener {
         if (e.getActionCommand().equals("Back")) {
             System.out.println("Back");
             frame.dispose();
+            CustomerHomeUI chui = new CustomerHomeUI();
+            chui.customersUI();
         }
 
         if (e.getActionCommand().equals("Save")) {

@@ -126,6 +126,7 @@ public class CustomerHomeUI implements ActionListener {
         btnBack.addActionListener(this);
         btnUpdate.addActionListener(this);
         btnDelete.addActionListener(this);
+        btnExit.addActionListener(this);
 
         // Table:
         String[] tableColumnTitle = {"Customer ID","First Name", "Last Name", "Contact Number", "Email"};
@@ -268,6 +269,10 @@ public class CustomerHomeUI implements ActionListener {
         if (e.getActionCommand().equals("Get All Customers")) {
             CustomerHomeUI chui = new CustomerHomeUI();
             chui.customersUI();
+            frame.dispose();
+        }
+
+        if (e.getActionCommand().equals("Exit")) {
             frame.dispose();
         }
 
