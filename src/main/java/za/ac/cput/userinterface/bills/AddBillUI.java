@@ -16,8 +16,8 @@ import java.awt.event.ActionListener;
 public class AddBillUI extends JFrame implements ActionListener
 {
     private JPanel pnlNorth, pnlCenter, pnlSouth;
-    private JButton btnSave, btnReset, btnBack;
-    private JLabel lblTax, lblSubTotal, lblTotal;
+    private JButton btnSave, btnBack;
+    private JLabel lblTax, lblSubTotal, lblTotal, lblHeading;
     private JTextField txtTax, txtSubTotal, txtTotal;
 
     public AddBillUI()
@@ -27,12 +27,12 @@ public class AddBillUI extends JFrame implements ActionListener
         pnlSouth = new JPanel();
 
         btnSave = new JButton("Save");
-        btnReset = new JButton("Reset");
         btnBack = new JButton("Back");
 
         lblSubTotal = new JLabel("Sub Total: ");
         lblTax = new JLabel("Tax: ");
         lblTotal = new JLabel("Total: ");
+        lblHeading = new JLabel("Add new Bill");
 
         txtSubTotal = new JTextField();
         txtTax = new JTextField();
@@ -44,28 +44,39 @@ public class AddBillUI extends JFrame implements ActionListener
         this.setTitle("Add new Bill");
 
         pnlNorth.setLayout(new FlowLayout());
+        pnlNorth.add(lblHeading);
+        lblHeading.setFont(new Font("Arial", Font.PLAIN, 30));
 
         pnlCenter.setLayout(new GridLayout(4, 2));
         pnlCenter.add(lblSubTotal);
+        lblSubTotal.setFont(new Font("Arial", Font.PLAIN, 15));
         pnlCenter.add(txtSubTotal);
+        txtSubTotal.setPreferredSize(new Dimension(200,24));
+
         pnlCenter.add(lblTax);
+        lblTax.setFont(new Font("Arial", Font.PLAIN, 15));
         pnlCenter.add(txtTax);
+        txtTax.setPreferredSize(new Dimension(200,24));
+
         pnlCenter.add(lblTotal);
+        lblTotal.setFont(new Font("Arial", Font.PLAIN, 15));
         pnlCenter.add(txtTotal);
+        txtTotal.setPreferredSize(new Dimension(200,24));
 
         pnlSouth.add(btnSave);
         btnSave.addActionListener(this);
-        pnlSouth.add(btnReset);
-        btnReset.addActionListener(this);
+        btnSave.setFont(new Font("Arial", Font.PLAIN, 20));
+
         pnlSouth.add(btnBack);
         btnBack.addActionListener(this);
+        btnBack.setFont(new Font("Arial", Font.PLAIN, 20));
 
         this.add(pnlNorth, BorderLayout.NORTH);
         this.add(pnlCenter, BorderLayout.CENTER);
         this.add(pnlSouth, BorderLayout.SOUTH);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(400, 400);
+        this.setSize(800,800);
 
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -90,22 +101,16 @@ public class AddBillUI extends JFrame implements ActionListener
         {
             case("Save"):
             {
-                int subTotal = Integer.parseInt(txtSubTotal.getText());
-                int tax = Integer.parseInt(txtTax.getText());
-                int total = Integer.parseInt(txtTotal.getText());
-
-                if ((subTotal < 1) && (tax < 1) && (total< 1))
+                if ((Integer.parseInt(txtSubTotal.getText()) < 1) && (Integer.parseInt(txtTax.getText()) < 1)
+                        && (Integer.parseInt(txtTotal.getText())< 1))
                 {
-                    JOptionPane.showMessageDialog(null, "Not all fields have values!");
+                    System.out.println("Not all fields have values!");
                 }
                 else this.Save();
-            }
 
-            case("Reset"):
-            {
-                txtSubTotal.setText("");
-                txtTax.setText("");
-                txtTotal.setText("");
+                new BillUI().setBillUI();
+                this.dispose();
+                break;
             }
 
             case("Back"):
