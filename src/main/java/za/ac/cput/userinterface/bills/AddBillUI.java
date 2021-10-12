@@ -76,7 +76,7 @@ public class AddBillUI extends JFrame implements ActionListener
         this.add(pnlSouth, BorderLayout.SOUTH);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(800,800);
+        this.setSize(600,600);
 
         this.setLocationRelativeTo(null);
         this.setVisible(true);

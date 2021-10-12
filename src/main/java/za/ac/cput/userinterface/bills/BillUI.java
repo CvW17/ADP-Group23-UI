@@ -64,7 +64,7 @@ public class BillUI extends JFrame implements ActionListener
         this.add(pnlCenter, BorderLayout.CENTER);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(800,800);
+        this.setSize(600,600);
 
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -94,6 +94,13 @@ public class BillUI extends JFrame implements ActionListener
             case("Delete"):
             {
                 new DeleteBillGUI().setGUI();
+                this.dispose();
+                break;
+            }
+
+            case("Update"):
+            {
+                new UpdateBillUI().setGUI();
                 this.dispose();
                 break;
             }
