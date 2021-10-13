@@ -6,14 +6,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
+import java.util.Set;
 
 public class DeleteBillGUI extends JFrame implements ActionListener
 {
     private JPanel pnlNorth, pnlCenter, pnlSouth;
     private JLabel lblID, lblHeading;
-    private JTextField txtID;
     private JButton btnDelete, btnBack;
-    private JScrollPane data;
+    private JComboBox cmbID;
 
     public DeleteBillGUI()
     {
@@ -24,14 +25,12 @@ public class DeleteBillGUI extends JFrame implements ActionListener
         pnlSouth = new JPanel();
 
         lblID = new JLabel("Enter Bill ID to delete: ");
-        lblHeading = new JLabel("Delete a Bill");
-
-        txtID = new JTextField();
+        lblHeading = new JLabel("Choose Bill to delete: ");
 
         btnDelete = new JButton("Delete");
         btnBack = new JButton("Back");
 
-        data = new JScrollPane(billsGUI.Display());
+        cmbID = new JComboBox();
     }
 
     public void setGUI()
@@ -40,15 +39,15 @@ public class DeleteBillGUI extends JFrame implements ActionListener
         pnlNorth.add(lblHeading);
         lblHeading.setFont(new Font("Arial", Font.PLAIN, 30));
 
-        pnlCenter.setLayout(new GridLayout(4, 1));
+        pnlCenter.setLayout(new FlowLayout());
         pnlCenter.setPreferredSize(new Dimension(200,50));
 
         pnlCenter.add(lblID);
         lblID.setFont(new Font("Arial", Font.PLAIN, 15));
 
-        pnlCenter.add(txtID);
+        this.getSet();
+        pnlCenter.add(cmbID);
         pnlCenter.add(btnDelete);
-        pnlCenter.add(data);
 
         btnDelete.addActionListener(this);
 
@@ -73,10 +72,25 @@ public class DeleteBillGUI extends JFrame implements ActionListener
     {
         AllBills billsGUI = new AllBills();
 
-        String id =  txtID.getText();
-
         BillDAO billDAO = new BillDAO();
-        billDAO.deleteBill(id);
+        billDAO.deleteBill(String.valueOf(cmbID.getSelectedItem()));
+    }
+
+    public void getSet()
+    {
+        BillDAO billDAO = new BillDAO();
+
+        Set<String> data = new HashSet();
+        data.addAll(billDAO.getID());
+
+        String[] id = new String[0];
+
+        id = data.toArray(id);
+
+        for (int i = 0; i < id.length; i++)
+        {
+            cmbID.addItem(id[i]);
+        }
     }
 
     @Override
@@ -86,11 +100,7 @@ public class DeleteBillGUI extends JFrame implements ActionListener
         {
             case("Delete"):
             {
-                if(txtID.getText().isEmpty())
-                    JOptionPane.showMessageDialog(null, "ID field is empty!");
-                else this.delete();
-
-                txtID.setText("");
+                this.delete();
 
                 new BillUI().setBillUI();
                 this.dispose();

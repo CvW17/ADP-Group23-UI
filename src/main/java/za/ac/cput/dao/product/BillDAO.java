@@ -7,7 +7,6 @@ package za.ac.cput.dao.product;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import za.ac.cput.models.entity.product.Bill;
-import za.ac.cput.models.entity.user.Employee;
 
 import java.util.HashSet;
 import java.util.Set;

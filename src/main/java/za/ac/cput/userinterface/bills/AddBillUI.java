@@ -17,8 +17,8 @@ public class AddBillUI extends JFrame implements ActionListener
 {
     private JPanel pnlNorth, pnlCenter, pnlSouth;
     private JButton btnSave, btnBack;
-    private JLabel lblTax, lblSubTotal, lblTotal, lblHeading;
-    private JTextField txtTax, txtSubTotal, txtTotal;
+    private JLabel lblTax, lblSubTotal, lblHeading;
+    private JTextField txtTax, txtSubTotal;
 
     public AddBillUI()
     {
@@ -31,12 +31,10 @@ public class AddBillUI extends JFrame implements ActionListener
 
         lblSubTotal = new JLabel("Sub Total: ");
         lblTax = new JLabel("Tax: ");
-        lblTotal = new JLabel("Total: ");
         lblHeading = new JLabel("Add new Bill");
 
         txtSubTotal = new JTextField();
         txtTax = new JTextField();
-        txtTotal = new JTextField();
     }
 
     public void setGUI()
@@ -47,7 +45,7 @@ public class AddBillUI extends JFrame implements ActionListener
         pnlNorth.add(lblHeading);
         lblHeading.setFont(new Font("Arial", Font.PLAIN, 30));
 
-        pnlCenter.setLayout(new GridLayout(4, 2));
+        pnlCenter.setLayout(new GridLayout(2, 2));
         pnlCenter.setPreferredSize(new Dimension(200,150));
         pnlCenter.add(lblSubTotal);
         lblSubTotal.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -56,10 +54,6 @@ public class AddBillUI extends JFrame implements ActionListener
         pnlCenter.add(lblTax);
         lblTax.setFont(new Font("Arial", Font.PLAIN, 15));
         pnlCenter.add(txtTax);
-
-        pnlCenter.add(lblTotal);
-        lblTotal.setFont(new Font("Arial", Font.PLAIN, 15));
-        pnlCenter.add(txtTotal);
 
         pnlSouth.add(btnSave);
         btnSave.addActionListener(this);
@@ -82,7 +76,7 @@ public class AddBillUI extends JFrame implements ActionListener
     {
         int subTotal = Integer.parseInt(txtSubTotal.getText());
         int tax = Integer.parseInt(txtTax.getText());
-        int total = Integer.parseInt(txtTotal.getText());
+        int total = subTotal - tax;
 
         BillDAO billDAO = new BillDAO();
 
@@ -97,8 +91,7 @@ public class AddBillUI extends JFrame implements ActionListener
         {
             case("Save"):
             {
-                if ((Integer.parseInt(txtSubTotal.getText()) < 1) && (Integer.parseInt(txtTax.getText()) < 1)
-                        && (Integer.parseInt(txtTotal.getText())< 1))
+                if ((Integer.parseInt(txtSubTotal.getText()) < 1) && (Integer.parseInt(txtTax.getText()) < 1))
                 {
                     System.out.println("Not all fields have values!");
                 }
