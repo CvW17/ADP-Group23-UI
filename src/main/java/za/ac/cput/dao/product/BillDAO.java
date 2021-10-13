@@ -7,6 +7,7 @@ package za.ac.cput.dao.product;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import za.ac.cput.models.entity.product.Bill;
+import za.ac.cput.models.entity.user.Employee;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -50,6 +51,15 @@ public class BillDAO
         ResponseEntity<Bill> responseEntity = restTemplate.postForEntity(url, bill, Bill.class);
 
         return responseEntity.getBody();
+    }
+
+    public Bill getByID(String id)
+    {
+        String url = baseURL + "/read/" + id;
+
+        ResponseEntity<Bill> response = restTemplate.getForEntity(url, Bill.class);
+
+        return response.getBody();
     }
 
     public Set<Bill> getAll()
