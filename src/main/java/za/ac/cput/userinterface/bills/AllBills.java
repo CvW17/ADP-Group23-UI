@@ -34,9 +34,9 @@ public class AllBills
         for (Bill b: bill)
         {
             tblData[count][0] = b.getBillID();
-            tblData[count][1] = String.valueOf(b.getSubTotal());
-            tblData[count][2] = String.valueOf(b.getTax());
-            tblData[count][3] = String.valueOf(b.getTotal());
+            tblData[count][1] = "R" + String.valueOf(b.getSubTotal());
+            tblData[count][2] = "R" + String.valueOf(b.getTax());
+            tblData[count][3] = "R" + String.valueOf(b.getTotal());
 
             count++;
         }

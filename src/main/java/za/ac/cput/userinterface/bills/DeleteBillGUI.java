@@ -41,24 +41,21 @@ public class DeleteBillGUI extends JFrame implements ActionListener
         lblHeading.setFont(new Font("Arial", Font.PLAIN, 30));
 
         pnlCenter.setLayout(new GridLayout(4, 1));
-        pnlCenter.add(lblID);
+        pnlCenter.setPreferredSize(new Dimension(200,50));
 
+        pnlCenter.add(lblID);
         lblID.setFont(new Font("Arial", Font.PLAIN, 15));
-        lblID.setPreferredSize(new Dimension(200,24));
 
         pnlCenter.add(txtID);
-        txtID.setPreferredSize(new Dimension(200,24));
         pnlCenter.add(btnDelete);
         pnlCenter.add(data);
 
         btnDelete.addActionListener(this);
-        btnDelete.setFont(new Font("Arial", Font.PLAIN, 20));
 
         pnlSouth.setLayout(new FlowLayout());
         pnlSouth.add(btnBack);
 
         btnBack.addActionListener(this);
-        btnBack.setFont(new Font("Arial", Font.PLAIN, 20));
 
         this.add(pnlNorth, BorderLayout.NORTH);
         this.add(pnlCenter, BorderLayout.CENTER);

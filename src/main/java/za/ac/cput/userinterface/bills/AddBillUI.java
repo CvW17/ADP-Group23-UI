@@ -48,28 +48,24 @@ public class AddBillUI extends JFrame implements ActionListener
         lblHeading.setFont(new Font("Arial", Font.PLAIN, 30));
 
         pnlCenter.setLayout(new GridLayout(4, 2));
+        pnlCenter.setPreferredSize(new Dimension(200,150));
         pnlCenter.add(lblSubTotal);
         lblSubTotal.setFont(new Font("Arial", Font.PLAIN, 15));
         pnlCenter.add(txtSubTotal);
-        txtSubTotal.setPreferredSize(new Dimension(200,24));
 
         pnlCenter.add(lblTax);
         lblTax.setFont(new Font("Arial", Font.PLAIN, 15));
         pnlCenter.add(txtTax);
-        txtTax.setPreferredSize(new Dimension(200,24));
 
         pnlCenter.add(lblTotal);
         lblTotal.setFont(new Font("Arial", Font.PLAIN, 15));
         pnlCenter.add(txtTotal);
-        txtTotal.setPreferredSize(new Dimension(200,24));
 
         pnlSouth.add(btnSave);
         btnSave.addActionListener(this);
-        btnSave.setFont(new Font("Arial", Font.PLAIN, 20));
 
         pnlSouth.add(btnBack);
         btnBack.addActionListener(this);
-        btnBack.setFont(new Font("Arial", Font.PLAIN, 20));
 
         this.add(pnlNorth, BorderLayout.NORTH);
         this.add(pnlCenter, BorderLayout.CENTER);

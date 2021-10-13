@@ -58,6 +58,7 @@ public class BillUI extends JFrame implements ActionListener
         pnlNorth.add(btnDelete);
 
         pnlCenter.setLayout(new FlowLayout());
+        pnlCenter.setPreferredSize(new Dimension(450,150));
         pnlCenter.add(new AllBills().Display());
 
         this.add(pnlNorth, BorderLayout.NORTH);
