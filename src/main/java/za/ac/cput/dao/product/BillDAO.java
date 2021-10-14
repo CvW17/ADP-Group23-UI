@@ -44,6 +44,23 @@ public class BillDAO
         restTemplate.delete(url);
     }
 
+    public Bill updateBill(Bill bill)
+    {
+        String url = baseURL + "/update";
+        ResponseEntity<Bill> responseEntity = restTemplate.postForEntity(url, bill, Bill.class);
+
+        return responseEntity.getBody();
+    }
+
+    public Bill getByID(String id)
+    {
+        String url = baseURL + "/read/" + id;
+
+        ResponseEntity<Bill> response = restTemplate.getForEntity(url, Bill.class);
+
+        return response.getBody();
+    }
+
     public Set<Bill> getAll()
     {
         Set<Bill> set = new HashSet<>();
@@ -57,6 +74,24 @@ public class BillDAO
         for (Bill b: bill)
         {
             set.add(b);
+        }
+
+        return set;
+    }
+
+    public Set<String> getID()
+    {
+        Set<String> set = new HashSet<>();
+        String url = baseURL + "/getAll";
+
+        HttpHeaders header = new HttpHeaders();
+        HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
+        ResponseEntity<Bill[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, httpEntity, Bill[].class);
+        Bill[] bill = responseEntity.getBody();
+
+        for (Bill b: bill)
+        {
+            set.add(b.getBillID());
         }
 
         return set;
