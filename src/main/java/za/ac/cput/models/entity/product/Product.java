@@ -2,9 +2,7 @@ package za.ac.cput.models.entity.product;
 
 
 public class Product {
-    private String productId;
-
-    private String supplierId, name;
+    private String productId, supplierId, name;
     private double price;
 
     private Product(){
