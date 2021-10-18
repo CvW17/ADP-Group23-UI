@@ -1,9 +1,14 @@
+/**
+ *  Name: Antin Williams
+ *  Student Number: 219212058
+ *  Group: 23
+ */
+
 package za.ac.cput.models.entity.product;
 
 
 public class Product {
-    private String productId, supplierId, name;
-    private double price;
+    private String productId, supplierId, name, price;
 
     private Product(){
 
@@ -28,7 +33,7 @@ public class Product {
         return name;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
@@ -44,7 +49,7 @@ public class Product {
 
     public static class Builder {
         private String productId, supplierId, name;
-        private double price;
+        private String price;
 
         public Builder setProductId(String productId) {
             this.productId = productId;
@@ -61,7 +66,7 @@ public class Product {
             return this;
         }
 
-        public Builder setPrice(double price){
+        public Builder setPrice(String price){
             this.price = price;
             return this;
         }

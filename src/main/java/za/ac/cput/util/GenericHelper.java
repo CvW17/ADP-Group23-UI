@@ -18,5 +18,9 @@ public class GenericHelper {
         String regex = "[0-9]+";
         return contactNumber.matches(regex);
     }
+    public static boolean validPrice(String contactNumber) {
+        String regex = "[0-9]+";
+        return contactNumber.matches(regex);
+    }
 
 }
