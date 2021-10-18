@@ -154,8 +154,8 @@ public class CustomerHomeUI implements ActionListener {
         JScrollPane table = new JScrollPane(getAllTable);
 
         // Panel North:
-        headerLabel = new JLabel("Header");
-        headerLabel.setFont(new Font("Arial", Font.PLAIN, 100));
+        headerLabel = new JLabel("Customers");
+        headerLabel.setFont(new Font("Arial", Font.BOLD, 100));
         panelNorth.setLayout(new GridBagLayout());
         panelNorth.add(headerLabel);
 

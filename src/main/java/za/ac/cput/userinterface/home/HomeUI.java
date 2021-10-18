@@ -16,6 +16,7 @@ public class HomeUI implements ActionListener {
     private JLabel filler1, filler2, filler3, filler4, filler5, filler6, filler7, filler8, filler9;
     private JLabel filler10, filler11, filler12, filler13, filler14, filler15, filler16;
     private JButton btnCustomer, btnAppointment, btnBill, btnEmployee, btnProduct, btnSupplier;
+    private JLabel labelTitle;
 
     public HomeUI() {
         frame = new JFrame("Home Page");
@@ -26,7 +27,8 @@ public class HomeUI implements ActionListener {
         panelCenter = new JPanel();
 
         // Header:
-
+        labelTitle = new JLabel("Julia's Salon", SwingConstants.CENTER);
+        labelTitle.setFont(new Font("Arial", Font.BOLD, 100));
 
         // Temporary fillers for layout:
         filler1 = new JLabel(" ");
@@ -87,7 +89,7 @@ public class HomeUI implements ActionListener {
         panelWest.setLayout(new GridLayout(1,1));
 
         // Add components to panels:
-        panelNorth.add(filler1);
+        panelNorth.add(labelTitle);
 
         panelCenter.add(btnCustomer);
         panelCenter.add(filler7);
