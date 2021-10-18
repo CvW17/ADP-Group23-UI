@@ -6,7 +6,6 @@ import org.springframework.web.client.RestTemplate;
 import za.ac.cput.models.entity.user.Customer;
 import java.util.*;
 
-
 public class CustomerDAO {
 
     private RestTemplate restTemplate = new RestTemplate();
