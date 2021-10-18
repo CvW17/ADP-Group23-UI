@@ -23,4 +23,14 @@ public class GenericHelper {
         return contactNumber.matches(regex);
     }
 
+    public static boolean emailValidation(String supplierEmail) {
+        String regex = "^\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b";
+        return supplierEmail.matches(regex);
+    }
+
+    public static boolean contactValidation(String supplierContact) {
+        String regex = "[0-9]+";
+        return supplierContact.matches(regex);
+    }
+
 }
