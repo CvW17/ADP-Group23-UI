@@ -277,6 +277,11 @@ public class UpdateCustomerGUI implements ActionListener {
                 System.out.println(customer);
                 customerDAO.updateCustomer(customer);
 
+                JOptionPane.showMessageDialog(null,"Customer updated!");
+                updateFrame.dispose();
+
+
+
             }
         }
         if (e.getActionCommand().equals("Reset")) {

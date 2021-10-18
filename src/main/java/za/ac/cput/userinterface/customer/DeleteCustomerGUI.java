@@ -185,6 +185,9 @@ public class DeleteCustomerGUI implements ActionListener {
         if (e.getActionCommand().equals("Remove")) {
             CustomerDAO cDAO = new CustomerDAO();
             cDAO.deleteCustomer(customer);
+
+            JOptionPane.showMessageDialog(null,"Customer deleted");
+            deleteFrame.dispose();
         }
         if (e.getActionCommand().equals("Exit")) {
             deleteFrame.dispose();
