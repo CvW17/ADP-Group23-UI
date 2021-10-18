@@ -1,18 +1,9 @@
 package za.ac.cput.dao.user;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.netty.handler.codec.http.HttpResponse;
-import org.apache.coyote.Response;
-import org.apache.tomcat.util.json.JSONParser;
+
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
 import za.ac.cput.models.entity.user.Customer;
-
-import javax.swing.*;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 
@@ -136,15 +127,20 @@ public class CustomerDAO {
 
     public Customer getCustomerByID(String id) {
         String url = baseURL + "/read/" + id;
-
-        ResponseEntity<Customer> response = restTemplate.getForEntity(url, Customer.class);
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
+        HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
+        ResponseEntity<Customer> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, Customer.class);
 
         return response.getBody();
     }
 
     public Customer updateCustomer(Customer customer) {
         String url = baseURL + "/update";
-        ResponseEntity<Customer> response = restTemplate.postForEntity(url, customer, Customer.class);
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
+        HttpEntity<Customer> httpEntity = new HttpEntity<>(customer, header);
+        ResponseEntity<Customer> response = restTemplate.exchange(url, HttpMethod.POST, httpEntity, Customer.class);
 
         return response.getBody();
     }
@@ -152,8 +148,12 @@ public class CustomerDAO {
     public String deleteCustomer(Customer c) {
         String id = c.getCustomerID();
         String url = baseURL + "/delete/" + id;
-        System.out.println(url);
-        restTemplate.delete(url);
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
+        HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, httpEntity, String.class);
+        System.out.println(response);
+//        restTemplate.delete(url);
         System.out.println("Customer deleted");
 
         return "Success";
