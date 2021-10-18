@@ -3,6 +3,7 @@ package za.ac.cput.userinterface.home;
 import za.ac.cput.userinterface.bills.BillUI;
 import za.ac.cput.userinterface.customer.CustomerHomeUI;
 import za.ac.cput.userinterface.employee.EmployeeHomeGUI;
+import za.ac.cput.userinterface.product.ProductHomeUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -152,6 +153,8 @@ public class HomeUI implements ActionListener {
 
         if(e.getActionCommand().equals("5. Products")) {
             System.out.println("5. Products");
+            ProductHomeUI productHomeUI = new ProductHomeUI();
+            productHomeUI.productsUI();
         }
 
         if(e.getActionCommand().equals("6. Suppliers")) {
