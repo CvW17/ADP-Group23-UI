@@ -106,11 +106,11 @@ public class AddSupplierGUI extends JFrame implements ActionListener {
 
         titleLabel = new JLabel(" Add Supplier", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
-        lblName = new JLabel("Supplier Name : ", SwingConstants.RIGHT);
+        lblName = new JLabel("Supplier Name : ", SwingConstants.LEFT);
         lblName.setFont(new Font("Arial", Font.BOLD, 15));
-        lblEmail = new JLabel("Email : ", SwingConstants.RIGHT);
+        lblEmail = new JLabel("Email : ", SwingConstants.LEFT);
         lblEmail.setFont(new Font("Arial", Font.BOLD, 15));
-        lblContact = new JLabel("Contact Number : ", SwingConstants.RIGHT);
+        lblContact = new JLabel("Contact Number : ", SwingConstants.LEFT);
         lblContact.setFont(new Font("Arial", Font.BOLD, 15));
 
         lblInvName = new JLabel(" ");
@@ -145,8 +145,8 @@ public class AddSupplierGUI extends JFrame implements ActionListener {
         txtEmail = new JTextField();
         txtCN = new JTextField();
 
-        panelNorth.setLayout(new GridLayout(1, 1));
-        panelCenter.setLayout(new GridLayout(12, 3));
+
+        panelCenter.setLayout(new GridLayout(9, 3));
         panelSouth.setLayout(new GridLayout(1, 3));
 
         //North
