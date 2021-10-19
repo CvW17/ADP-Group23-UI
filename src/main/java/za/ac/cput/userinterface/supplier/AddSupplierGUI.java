@@ -14,12 +14,9 @@ import java.awt.event.ActionListener;
 public class AddSupplierGUI extends JFrame implements ActionListener {
 
     private  JPanel mainPanelNorth, mainPanelCenter, mainPanelSouth;
-    private  JPanel bottomPanelNorth;
-    private  JPanel bottomPanelSouth;
-    private  JPanel bottomPanelCenter;
     private  JLabel mainLabel,lblName,lblEmail,lblContact, lblInvName, lblInvEmail, lblInvCN, titleLabel;
     private  JButton btnAddSupplier, btnFindSupplier, btnGetAllSuppliers, btnBack, btnSave, btnClear, btnExit;
-    private  JTextField idTextField, txtName,txtEmail, txtCN;
+    private  JTextField txtName,txtEmail, txtCN;
     private JPanel addSupplierPanel;
 
 
@@ -33,10 +30,7 @@ public class AddSupplierGUI extends JFrame implements ActionListener {
         mainPanelCenter = new JPanel();
         mainPanelSouth = new JPanel();
 
-        //Sup
-        bottomPanelNorth = new JPanel();
-        bottomPanelCenter = new JPanel();
-        bottomPanelSouth = new JPanel();
+        //Sub
         addSupplierPanel = new JPanel();
 
         //Labels
