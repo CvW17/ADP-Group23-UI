@@ -77,7 +77,6 @@ public class SupplierDAO {
         HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, httpEntity, String.class);
         System.out.println(response);
-//        restTemplate.delete(url);
         System.out.println("Supplier deleted");
 
         return "Success";
