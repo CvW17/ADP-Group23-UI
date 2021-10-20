@@ -133,10 +133,10 @@ public class SupplierHome extends JFrame implements ActionListener {
     }
 
     public void suppliersUI() {
-        // Set UI:
+
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(800, 650);
-        //frame.pack();
+
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
