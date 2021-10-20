@@ -101,7 +101,7 @@ public class SupplierHome extends JFrame implements ActionListener {
         mainPanelCenter.add(btnGetAllSuppliers);
         mainPanelCenter.add(btnBack);
 
-        // Panel South(Placeholder panel):
+
         mainPanelSouth.setLayout(new BorderLayout());
         mainPanelSouth.setPreferredSize(new Dimension(600,400));
         bottomPanelNorth.setLayout(new GridLayout(2,3));
@@ -152,7 +152,7 @@ public class SupplierHome extends JFrame implements ActionListener {
 
         if (e.getActionCommand().equals("Find Supplier")) {
             FindSupplierGUI findSupplierGUI = new FindSupplierGUI();
-//            findSupplierGUI.findSuppliersUI();
+            findSupplierGUI.findSuppliersUI();
             this.dispose();
         }
 
@@ -181,11 +181,11 @@ public class SupplierHome extends JFrame implements ActionListener {
                 System.out.println("Update");
                 UpdateSupplierGUI updateSupplierGUI = new UpdateSupplierGUI();
                Supplier supplier =supplierDAO.getSupplierByID(textIDInput);
-//                JFrame updateFrame = updateSupplierGUI.UpdateSupplierGUI(supplier);
-//                updateFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//                updateFrame.setSize(780, 350);
-//                updateFrame.setLocationRelativeTo(null);
-//                updateFrame.setVisible(true);
+                JFrame updateFrame = updateSupplierGUI.USupplierGUI(supplier);
+                updateFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                updateFrame.setSize(780, 350);
+                updateFrame.setLocationRelativeTo(null);
+                updateFrame.setVisible(true);
             }
         }
         if (e.getActionCommand().equals("Delete")) {
