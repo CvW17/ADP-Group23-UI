@@ -3,7 +3,7 @@ package za.ac.cput.dao.product;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import za.ac.cput.models.entity.product.Supplier;
-import za.ac.cput.models.entity.user.Customer;
+
 
 import java.util.HashSet;
 import java.util.Set;
