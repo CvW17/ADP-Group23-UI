@@ -197,11 +197,11 @@ public class SupplierHome extends JFrame implements ActionListener {
                 SupplierDAO supplierDAO = new SupplierDAO();
                 Supplier supplier = supplierDAO.getSupplierByID(textIDInput);
                 DeleteSupplierGUI deleteSupplierGUI = new DeleteSupplierGUI();
-//                JFrame deleteFrame = deleteSupplierGUI.deleteSupplierFrame(supplier);
-//                deleteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//                deleteFrame.setSize(780, 350);
-//                deleteFrame.setLocationRelativeTo(null);
-//                deleteFrame.setVisible(true);
+                JFrame dFrame = deleteSupplierGUI.delSupplierFrame(supplier);
+                dFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                dFrame.setSize(780, 350);
+                dFrame.setLocationRelativeTo(null);
+                dFrame.setVisible(true);
             }
         }
     }

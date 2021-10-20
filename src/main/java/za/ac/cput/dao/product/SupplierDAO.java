@@ -51,15 +51,20 @@ public class SupplierDAO {
 
     public Supplier getSupplierByID(String id) {
         String url = baseURL + "/read/" + id;
-
-        ResponseEntity<Supplier> response = restTemplate.getForEntity(url, Supplier.class);
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
+        HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
+        ResponseEntity<Supplier> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, Supplier.class);
 
         return response.getBody();
     }
 
     public Supplier updateSupplier(Supplier supplier) {
         String url = baseURL + "/update";
-        ResponseEntity<Supplier> response = restTemplate.postForEntity(url, supplier, Supplier.class);
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
+        HttpEntity<Supplier> httpEntity = new HttpEntity<>(supplier, header);
+        ResponseEntity<Supplier> response = restTemplate.exchange(url, HttpMethod.POST, httpEntity, Supplier.class);
 
         return response.getBody();
     }
@@ -67,8 +72,12 @@ public class SupplierDAO {
     public String deleteSupplier(Supplier s) {
         String id = s.getSupplierID();
         String url = baseURL + "/delete/" + id;
-        System.out.println(url);
-        restTemplate.delete(url);
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
+        HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, httpEntity, String.class);
+        System.out.println(response);
+//        restTemplate.delete(url);
         System.out.println("Supplier deleted");
 
         return "Success";
