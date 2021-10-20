@@ -23,6 +23,11 @@ public class GenericHelper {
         return contactNumber.matches(regex);
     }
 
+    public static boolean nameValidation(String supplierName) {
+        String regex = "[a-zA-Z ']+";
+        return supplierName.matches(regex);
+    }
+
     public static boolean emailValidation(String supplierEmail) {
         String regex = "^\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b";
         return supplierEmail.matches(regex);
