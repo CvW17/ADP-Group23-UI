@@ -57,7 +57,9 @@ public class EmployeeDAO {
         head.setBasicAuth(Username, Password);
         HttpEntity<Employee> entity = new HttpEntity<>(employee, head);
         ResponseEntity<Employee> response = restTemplate.exchange(url, HttpMethod.POST, entity,Employee.class);
+        System.out.println("Employee information has been updated");
         return response.getBody();
+
     }
 
     //DELETE

@@ -95,15 +95,19 @@ public class ProductDAO {
 
     public Product getProductByID(String id) {
         String url = baseURL + "/read/" + id;
-
-        ResponseEntity<Product> response = restTemplate.getForEntity(url, Product.class);
-
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
+        HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
+        ResponseEntity<Product> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, Product.class);
         return response.getBody();
     }
 
     public Product updateProduct(Product product) {
         String url = baseURL + "/update";
-        ResponseEntity<Product> response = restTemplate.postForEntity(url, product, Product.class);
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
+        HttpEntity<Product> httpEntity = new HttpEntity<>(product, header);
+        ResponseEntity<Product> response = restTemplate.exchange(url, HttpMethod.POST, httpEntity, Product.class);
 
         return response.getBody();
     }
@@ -111,8 +115,10 @@ public class ProductDAO {
     public String deleteProduct(Product p) {
         String id = p.getProductId();
         String url = baseURL + "/delete/" + id;
-        System.out.println(url);
-        restTemplate.delete(url);
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
+        HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, httpEntity, String.class);
         System.out.println("Product deleted");
 
         return "Success";
